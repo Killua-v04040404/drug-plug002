@@ -14,53 +14,55 @@ struct ContentView: View {
     @EnvironmentObject var statsManager: StatsManager
     
     var body: some View {
-        NavigationView {
-            HStack(spacing: 0) {
-                // Sidebar Navigation
-                SidebarView()
-                    .frame(width: 80)
-                    .background(Color(NSColor.controlBackgroundColor).opacity(0.5))
-                
-                // Main Content Area
-                VStack(spacing: 0) {
-                    // Top Header
-                    TopHeaderView()
-                        .padding(.horizontal, 32)
-                        .padding(.top, 24)
+        GeometryReader { geometry in
+            NavigationView {
+                HStack(spacing: 0) {
+                    // Sidebar Navigation
+                    SidebarView()
+                        .frame(width: 80)
+                        .background(Color.black.opacity(0.2))
                     
-                    // Content based on selected view
-                    ScrollView {
-                        VStack(spacing: 32) {
-                            switch appState.selectedTab {
-                            case .timer:
-                                TimerMainView()
-                            case .stats:
-                                StatsMainView()
-                            case .music:
-                                MusicMainView()
-                            case .settings:
-                                SettingsMainView()
+                    // Main Content Area
+                    VStack(spacing: 0) {
+                        // Top Header
+                        TopHeaderView()
+                            .padding(.horizontal, 40)
+                            .padding(.top, 32)
+                        
+                        // Content based on selected view
+                        ScrollView {
+                            VStack(spacing: 40) {
+                                switch appState.selectedTab {
+                                case .timer:
+                                    TimerMainView()
+                                case .stats:
+                                    StatsMainView()
+                                case .music:
+                                    MusicMainView()
+                                case .settings:
+                                    SettingsMainView()
+                                }
                             }
+                            .padding(.horizontal, 40)
+                            .padding(.bottom, 40)
+                            .frame(minHeight: geometry.size.height - 120)
                         }
-                        .padding(.horizontal, 32)
-                        .padding(.bottom, 32)
                     }
-                }
-                .frame(maxWidth: .infinity)
-                .background(
-                    LinearGradient(
-                        colors: [
-                            Color(red: 0.08, green: 0.08, blue: 0.12),
-                            Color(red: 0.05, green: 0.05, blue: 0.08)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+                    .frame(maxWidth: .infinity)
+                    .background(
+                        LinearGradient(
+                            colors: [
+                                Color(red: 0.95, green: 0.95, blue: 0.97),
+                                Color(red: 0.92, green: 0.92, blue: 0.95)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
                     )
-                )
+                }
             }
+            .navigationViewStyle(DoubleColumnNavigationViewStyle())
         }
-        .frame(minWidth: 900, minHeight: 700)
-        .background(Color(red: 0.05, green: 0.05, blue: 0.08))
     }
 }
 
@@ -74,7 +76,7 @@ struct TopHeaderView: View {
                     HStack(spacing: 4) {
                         Text("FOCUS")
                             .font(.title.weight(.heavy))
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                         Text("PLUG")
                             .font(.title.weight(.heavy))
                             .foregroundColor(.red)
@@ -82,7 +84,7 @@ struct TopHeaderView: View {
                     
                     Text("Your drug dealer for focus 💊")
                         .font(.caption)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
                 }
                 
                 Spacer()
@@ -99,18 +101,19 @@ struct TopHeaderView: View {
                             .foregroundColor(.orange)
                         Text("day streak")
                             .font(.caption2)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
                     }
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.orange.opacity(0.1))
+                        .fill(Color.white)
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.orange.opacity(0.3), lineWidth: 1)
+                                .stroke(Color.orange.opacity(0.2), lineWidth: 1)
                         )
+                        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
                 )
             }
         }
