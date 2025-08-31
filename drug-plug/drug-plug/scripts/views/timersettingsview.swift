@@ -58,7 +58,7 @@ struct TimerSettingsView: View {
                                     .tag(minute)
                             }
                         }
-                        .pickerStyle(WheelPickerStyle())
+                        .pickerStyle(MenuPickerStyle())
                         .frame(width: 100, height: 120)
                         .background(
                             RoundedRectangle(cornerRadius: 12)
@@ -78,7 +78,7 @@ struct TimerSettingsView: View {
                                     .tag(second)
                             }
                         }
-                        .pickerStyle(WheelPickerStyle())
+                        .pickerStyle(MenuPickerStyle())
                         .frame(width: 100, height: 120)
                         .background(
                             RoundedRectangle(cornerRadius: 12)

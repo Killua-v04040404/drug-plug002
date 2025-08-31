@@ -113,7 +113,14 @@ struct SidebarItem: View {
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ) :
-                        (isHovered ? Color.white.opacity(0.05) : Color.clear)
+                        LinearGradient(
+                            colors: [
+                                isHovered ? Color.white.opacity(0.05) : Color.clear,
+                                isHovered ? Color.white.opacity(0.03) : Color.clear
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
                     )
                     .shadow(
                         color: isSelected ? .red.opacity(0.3) : .clear,
