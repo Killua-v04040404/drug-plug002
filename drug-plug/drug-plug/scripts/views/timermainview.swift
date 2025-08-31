@@ -132,9 +132,6 @@ struct TimerMainView: View {
             }
             .padding(.horizontal, 40)
             
-            // Quick Actions
-            QuickActionsView()
-                .padding(.horizontal, 40)
         }
         .sheet(isPresented: $showingTimerSettings) {
             TimerSettingsView()
